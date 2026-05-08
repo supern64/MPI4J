@@ -48,21 +48,7 @@ public class UserClient {
         JsonObject reqBody = new JsonObject();
         reqBody.addProperty("session_id", sessionId);
 
-        CompletableFuture<Response<Void>> res = c.postPrivileged("/user/session/invalidate", reqBody, Void.class);
-        res.thenAccept(r -> {
-            if (r.success() && sessionId.equals(c.sessionID())) {
-                c.destroySession();
-            }
-        });
-
-        return res;
-    }
-
-    /**
-     * Invalidate this session and this client.
-     */
-    public CompletableFuture<Response<Void>> logout() {
-        return invalidateSession(c.sessionID());
+        return c.postPrivileged("/user/session/invalidate", reqBody, Void.class);
     }
 
     /**

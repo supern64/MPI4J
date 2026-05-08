@@ -22,7 +22,7 @@ public enum APIError {
     PAYMENT_LINK_CANCELLED(3003, "Payment link cancelled"),
 
     INVALID_RETURN_URL(4001, "return_url domain not in allowed domains"),
-    KEY_LIMIT_EXCEEDED(4002, "\tAmount exceeds key's limit (unreviewed/unverified)"),
+    KEY_LIMIT_EXCEEDED(4002, "Amount exceeds key's limit (unreviewed/unverified)"),
 
     UNDER_MAINTENANCE(9003, "Server is under maintenance"),
     INVALID_INPUT(9004, "Invalid input"),

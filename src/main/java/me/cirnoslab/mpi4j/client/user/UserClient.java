@@ -1,7 +1,10 @@
 package me.cirnoslab.mpi4j.client.user;
 
 import com.google.gson.JsonObject;
-import me.cirnoslab.mpi4j.model.response.*;
+import me.cirnoslab.mpi4j.model.response.GetInfoResponse;
+import me.cirnoslab.mpi4j.model.response.GetRestrictionsResponse;
+import me.cirnoslab.mpi4j.model.response.GetSessionsResponse;
+import me.cirnoslab.mpi4j.model.response.Response;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -17,6 +20,7 @@ public class UserClient {
 
     /**
      * Get profile and balance information for the authenticated user.
+     *
      * @return the user information
      */
     public CompletableFuture<Response<GetInfoResponse>> getInfo() {
@@ -25,6 +29,7 @@ public class UserClient {
 
     /**
      * Get active restrictions on the authenticated user's account.
+     *
      * @return the restrictions
      */
     public CompletableFuture<Response<GetRestrictionsResponse>> getRestrictions() {
@@ -33,6 +38,7 @@ public class UserClient {
 
     /**
      * List active and recently invalidated sessions for the authenticated user.
+     *
      * @return the sessions
      */
     public CompletableFuture<Response<GetSessionsResponse>> getSessions() {
@@ -41,6 +47,7 @@ public class UserClient {
 
     /**
      * Invalidate (log out) a specific session.
+     *
      * @param sessionId The session ID to invalidate
      */
     public CompletableFuture<Response<Void>> invalidateSession(String sessionId) {

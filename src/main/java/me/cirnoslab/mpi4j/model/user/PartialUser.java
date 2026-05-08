@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Nullable;
  * id is null with {@link PaymentLinkClient#get(String)}
  */
 public record PartialUser(
-    @Nullable Integer id,
-    String username
-) {}
+        @Nullable Integer id,
+        String username
+) {
+}

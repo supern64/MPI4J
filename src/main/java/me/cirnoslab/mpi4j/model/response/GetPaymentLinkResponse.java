@@ -7,8 +7,9 @@ import java.math.BigInteger;
 import java.time.Instant;
 
 public record GetPaymentLinkResponse(
-    BigInteger amount,
-    PartialUser creator,
-    String note,
-    @SerializedName("created") Instant createdAt
-) {}
+        BigInteger amount,
+        PartialUser creator,
+        String note,
+        @SerializedName("created") Instant createdAt
+) {
+}

@@ -6,6 +6,7 @@ import java.math.BigInteger;
  * Represents a user on the leaderboard.
  */
 public record LeaderboardUser(
-    String username,
-    BigInteger balance
-) {}
+        String username,
+        BigInteger balance
+) {
+}

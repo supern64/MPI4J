@@ -9,11 +9,12 @@ import java.time.Instant;
  * Represents a payment link.
  */
 public record PaymentLink(
-    int id,
-    String token,
-    BigInteger amount,
-    String note,
-    @SerializedName("created") Instant createdAt,
-    PaymentLinkStatus status,
-    String url
-) {}
+        int id,
+        String token,
+        BigInteger amount,
+        String note,
+        @SerializedName("created") Instant createdAt,
+        PaymentLinkStatus status,
+        String url
+) {
+}

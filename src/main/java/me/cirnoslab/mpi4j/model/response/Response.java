@@ -8,7 +8,8 @@ import org.jetbrains.annotations.Nullable;
  * Should be used with the other *Response classes to form a full reply.
  */
 public record Response<T>(
-    boolean success,
-    @Nullable APIError error,
-    T data
-) {}
+        boolean success,
+        @Nullable APIError error,
+        T data
+) {
+}

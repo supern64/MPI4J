@@ -18,6 +18,7 @@ public class InfoClient {
 
     /**
      * Get the top 10 users by balance.
+     *
      * @return the users
      */
     public CompletableFuture<Response<GetLeaderboardResponse>> getLeaderboard() {
@@ -26,6 +27,7 @@ public class InfoClient {
 
     /**
      * Get the list of MyPayIndia team members.
+     *
      * @return the list of members
      */
     public CompletableFuture<Response<GetTeamResponse>> getTeam() {

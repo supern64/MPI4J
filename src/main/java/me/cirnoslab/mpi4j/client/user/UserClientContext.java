@@ -92,7 +92,8 @@ public class UserClientContext {
     }
 
     <T> CompletableFuture<Response<T>> getPrivileged(String path, Class<T> inner) {
-        if (!this.isLoggedIn()) return CompletableFuture.failedFuture(new IllegalStateException("Client is not logged in."));
+        if (!this.isLoggedIn())
+            return CompletableFuture.failedFuture(new IllegalStateException("Client is not logged in."));
         CompletableFuture<Response<T>> res = get(path, inner);
         res.thenAccept(a -> {
             if (a.success()) recordExpiry();
@@ -115,7 +116,8 @@ public class UserClientContext {
     }
 
     <T> CompletableFuture<Response<T>> postPrivileged(String path, Object body, Class<T> inner) {
-        if (!this.isLoggedIn()) return CompletableFuture.failedFuture(new IllegalStateException("Client is not logged in."));
+        if (!this.isLoggedIn())
+            return CompletableFuture.failedFuture(new IllegalStateException("Client is not logged in."));
         CompletableFuture<Response<T>> res = post(path, body, inner);
         res.thenAccept(a -> {
             if (a.success()) recordExpiry();

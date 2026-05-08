@@ -19,9 +19,10 @@ public class AuthClient {
 
     /**
      * Authenticate and receive a session ID.
-     * @param user Username or email address
+     *
+     * @param user     Username or email address
      * @param password Account password
-     * @param otp TOTP authenticator code (required if 2FA is enabled)
+     * @param otp      TOTP authenticator code (required if 2FA is enabled)
      * @return the session ID and user
      */
     public CompletableFuture<Response<LoginResponse>> login(String user, String password, @Nullable String otp) {
@@ -55,7 +56,8 @@ public class AuthClient {
 
     /**
      * Authenticate and receive a session ID.
-     * @param user Username or email address
+     *
+     * @param user     Username or email address
      * @param password Account password
      * @return the session ID and user
      */

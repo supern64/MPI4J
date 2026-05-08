@@ -8,9 +8,10 @@ import java.time.Instant;
  * Represents a team member.
  */
 public record TeamMember(
-    String name,
-    String role,
-    @SerializedName("avatar") String avatarURL,
-    @SerializedName("joined") Instant joinedAt,
-    ContactCollection socials
-) {}
+        String name,
+        String role,
+        @SerializedName("avatar") String avatarURL,
+        @SerializedName("joined") Instant joinedAt,
+        ContactCollection socials
+) {
+}

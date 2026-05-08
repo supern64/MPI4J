@@ -9,7 +9,8 @@ import java.time.Instant;
  * Represents a restriction on a user
  */
 public record Restriction(
-    boolean active,
-    @Nullable String value,
-    @SerializedName("expires_at") Instant expiresAt
-) {}
+        boolean active,
+        @Nullable String value,
+        @SerializedName("expires_at") Instant expiresAt
+) {
+}

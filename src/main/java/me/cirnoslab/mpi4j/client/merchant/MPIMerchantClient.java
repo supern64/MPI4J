@@ -50,7 +50,8 @@ public class MPIMerchantClient {
 
     /**
      * Create a merchant client.
-     * @param secretKey The secret merchant key
+     *
+     * @param secretKey  The secret merchant key
      * @param useStaging Whether to use the staging server
      */
     public MPIMerchantClient(String secretKey, boolean useStaging) {
@@ -72,9 +73,10 @@ public class MPIMerchantClient {
 
     /**
      * Creates a checkout session.
-     * @param amount Amount you want the customer to pay in paisa (0 < amount < 100,000,000 / 1 million INR)
+     *
+     * @param amount    Amount you want the customer to pay in paisa (0 < amount < 100,000,000 / 1 million INR)
      * @param returnURL URL to redirect the customer to after payment, must be one of your allowed domains
-     * @param orderID Your order reference, a maximum of 64 characters are allowed
+     * @param orderID   Your order reference, a maximum of 64 characters are allowed
      * @return the session ID, checkout URL and expiry time
      */
     public CompletableFuture<Response<CreateCheckoutSessionResponse>> createCheckoutSession(BigInteger amount, String returnURL, @Nullable String orderID) {
@@ -86,7 +88,9 @@ public class MPIMerchantClient {
         JsonObject reqBody = new JsonObject();
         reqBody.addProperty("amount", amount);
         reqBody.addProperty("return_url", returnURL);
-        if (orderID != null) { reqBody.addProperty("order_id", orderID); }
+        if (orderID != null) {
+            reqBody.addProperty("order_id", orderID);
+        }
 
         HttpRequest req = HttpRequest.newBuilder()
                 .uri(URI.create(this.baseURL() + "/pay/create"))
@@ -95,14 +99,16 @@ public class MPIMerchantClient {
                 .header("Authorization", "Bearer " + this.secretKey)
                 .build();
 
-        Type rType = new TypeToken<Response<CreateCheckoutSessionResponse>>() {}.getType();
+        Type rType = new TypeToken<Response<CreateCheckoutSessionResponse>>() {
+        }.getType();
         return this.http.sendAsync(req, HttpResponse.BodyHandlers.ofString())
                 .thenApply(r -> this.gson.fromJson(r.body(), rType));
     }
 
     /**
      * Creates a checkout session.
-     * @param amount Amount you want the customer to pay in paisa (0 < amount < 100,000,000 / 1 million INR)
+     *
+     * @param amount    Amount you want the customer to pay in paisa (0 < amount < 100,000,000 / 1 million INR)
      * @param returnURL URL to redirect the customer to after payment, must be one of your allowed domains
      * @return the session ID, checkout URL and expiry time
      */
@@ -116,7 +122,8 @@ public class MPIMerchantClient {
                 .header("Authorization", "Bearer " + this.secretKey)
                 .build();
 
-        Type rType = new TypeToken<Response<GetCheckoutSessionResponse>>() {}.getType();
+        Type rType = new TypeToken<Response<GetCheckoutSessionResponse>>() {
+        }.getType();
         return this.http.sendAsync(req, HttpResponse.BodyHandlers.ofString())
                 .thenApply(r -> this.gson.fromJson(r.body(), rType));
     }

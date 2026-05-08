@@ -21,20 +21,24 @@ public class PaymentLinkClient {
 
     /**
      * Create a payment link. Deducts the amount from your balance immediately.
+     *
      * @param amount Amount in paisa
-     * @param note Optional note
+     * @param note   Optional note
      * @return the resulting payment link
      */
     public CompletableFuture<Response<CreatePaymentLinkResponse>> create(BigInteger amount, @Nullable String note) {
         JsonObject reqBody = new JsonObject();
         reqBody.addProperty("amount", amount);
-        if (note != null) { reqBody.addProperty("note", note); }
+        if (note != null) {
+            reqBody.addProperty("note", note);
+        }
 
         return c.postPrivileged("/payment-link/create", reqBody, CreatePaymentLinkResponse.class);
     }
 
     /**
      * Create a payment link. Deducts the amount from your balance immediately.
+     *
      * @param amount Amount in paisa
      * @return the resulting payment link
      */
@@ -44,6 +48,7 @@ public class PaymentLinkClient {
 
     /**
      * List all payment links created by the authenticated user.
+     *
      * @return the list of payment links
      */
     public CompletableFuture<Response<GetPaymentLinkListResponse>> getList() {
@@ -53,6 +58,7 @@ public class PaymentLinkClient {
     /**
      * Get details of a payment link by its token.
      * User details do not include database ID.
+     *
      * @param token Payment link token
      * @return the payment link
      */
@@ -62,6 +68,7 @@ public class PaymentLinkClient {
 
     /**
      * Claim a payment link and receive the funds.
+     *
      * @param token Payment link token
      * @return the transaction ID
      */
@@ -74,6 +81,7 @@ public class PaymentLinkClient {
 
     /**
      * Cancel your own payment link and refund the amount to your balance.
+     *
      * @param token Payment link token
      */
     public CompletableFuture<Response<Void>> cancel(String token) {

@@ -11,12 +11,13 @@ import java.time.Instant;
  * Represents a transaction. Amounts are in paisa.
  */
 public record Transaction(
-    int id,
-    @SerializedName("transaction_id") String transactionID,
-    PartialUser sender,
-    PartialUser recipient,
-    BigInteger amount,
-    @Nullable String note,
-    TransactionStatus status,
-    @SerializedName("created") Instant createdAt
-) {}
+        int id,
+        @SerializedName("transaction_id") String transactionID,
+        PartialUser sender,
+        PartialUser recipient,
+        BigInteger amount,
+        @Nullable String note,
+        TransactionStatus status,
+        @SerializedName("created") Instant createdAt
+) {
+}

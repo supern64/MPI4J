@@ -1,6 +1,7 @@
 package me.cirnoslab.mpi4j.client.user;
 
-import com.google.gson.*;
+import com.google.gson.GsonBuilder;
+import com.google.gson.ToNumberPolicy;
 import me.cirnoslab.mpi4j.model.APIError;
 import me.cirnoslab.mpi4j.model.adapters.APIErrorAdapter;
 import me.cirnoslab.mpi4j.model.adapters.InstantAdapter;
@@ -24,7 +25,7 @@ public class MPIUserClient {
     private final PaymentLinkClient paymentLinkClient;
 
     /**
-     * @param useOTP Whether the account will use OTP
+     * @param useOTP     Whether the account will use OTP
      * @param useStaging Whether the client will use the staging server
      */
     public MPIUserClient(boolean useOTP, boolean useStaging) {

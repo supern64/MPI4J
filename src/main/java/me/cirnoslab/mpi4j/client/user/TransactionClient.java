@@ -24,24 +24,28 @@ public class TransactionClient {
 
     /**
      * Transfer funds to another user.
+     *
      * @param recipient Recipient username
-     * @param amount Amount in paisa
-     * @param note Optional transfer note
+     * @param amount    Amount in paisa
+     * @param note      Optional transfer note
      * @return the transaction ID and status
      */
     public CompletableFuture<Response<TransferResponse>> transfer(String recipient, BigInteger amount, @Nullable String note) {
         JsonObject reqBody = new JsonObject();
         reqBody.addProperty("recipient", recipient);
         reqBody.addProperty("amount", amount);
-        if (note != null) { reqBody.addProperty("note", note); }
+        if (note != null) {
+            reqBody.addProperty("note", note);
+        }
 
         return c.postPrivileged("/transaction/transfer", reqBody, TransferResponse.class);
     }
 
     /**
      * Transfer funds to another user.
+     *
      * @param recipient Recipient username
-     * @param amount Amount in paisa
+     * @param amount    Amount in paisa
      * @return the transaction ID and status
      */
     public CompletableFuture<Response<TransferResponse>> transfer(String recipient, BigInteger amount) {
@@ -50,6 +54,7 @@ public class TransactionClient {
 
     /**
      * Get details of a specific transaction.
+     *
      * @param id Transaction ID (TXN-xxx)
      * @return the transaction
      */
@@ -59,6 +64,7 @@ public class TransactionClient {
 
     /**
      * Get transaction history for the authenticated user.
+     *
      * @return the list of transactions
      */
     public CompletableFuture<Response<GetTransactionListResponse>> getList() {

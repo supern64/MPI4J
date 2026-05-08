@@ -16,9 +16,11 @@ import org.jetbrains.annotations.Nullable;
 import java.lang.reflect.Type;
 import java.math.BigInteger;
 import java.net.URI;
+import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.concurrent.CompletableFuture;
 
@@ -70,7 +72,7 @@ public class MPIMerchantClient {
 
     /**
      * Creates a checkout session.
-     * @param amount Amount you want the customer to pay in paisa (0 < amount < 1 000 000 00)
+     * @param amount Amount you want the customer to pay in paisa (0 < amount < 100,000,000 / 1 million INR)
      * @param returnURL URL to redirect the customer to after payment, must be one of your allowed domains
      * @param orderID Your order reference, a maximum of 64 characters are allowed
      * @return the session ID, checkout URL and expiry time
@@ -79,7 +81,7 @@ public class MPIMerchantClient {
         if (orderID != null && orderID.length() > 64)
             return CompletableFuture.failedFuture(new IllegalArgumentException("Order ID length may not exceed 64."));
         if (amount.compareTo(BigInteger.ONE) < 0 || amount.compareTo(new BigInteger("100000000")) > 0)
-            return CompletableFuture.failedFuture(new IllegalArgumentException("Amount must be > 0 and < 1 000 000 00."));
+            return CompletableFuture.failedFuture(new IllegalArgumentException("Amount must be > 0 and < 100,000,000 / 1 million INR."));
 
         JsonObject reqBody = new JsonObject();
         reqBody.addProperty("amount", amount);
@@ -110,7 +112,7 @@ public class MPIMerchantClient {
 
     public CompletableFuture<Response<GetCheckoutSessionResponse>> getCheckoutSession(String sessionID) {
         HttpRequest req = HttpRequest.newBuilder()
-                .uri(URI.create(this.baseURL() + "/pay/status?session_id=" + sessionID))
+                .uri(URI.create(this.baseURL() + "/pay/status?session_id=" + URLEncoder.encode(sessionID, StandardCharsets.UTF_8)))
                 .header("Authorization", "Bearer " + this.secretKey)
                 .build();
 

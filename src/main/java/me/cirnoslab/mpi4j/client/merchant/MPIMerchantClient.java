@@ -102,7 +102,7 @@ public class MPIMerchantClient {
 
     /**
      * Creates a checkout session.
-     * @param amount Amount you want the customer to pay in paisa (0 < amount < 1 000 000 00)
+     * @param amount Amount you want the customer to pay in paisa (0 < amount < 100,000,000 / 1 million INR)
      * @param returnURL URL to redirect the customer to after payment, must be one of your allowed domains
      * @return the session ID, checkout URL and expiry time
      */

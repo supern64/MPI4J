@@ -41,28 +41,13 @@ public class UserClient {
 
     /**
      * Invalidate (log out) a specific session.
-     * Automatically invalidates this client if the session ID for this session is the parameter.
      * @param sessionId The session ID to invalidate
      */
     public CompletableFuture<Response<Void>> invalidateSession(String sessionId) {
         JsonObject reqBody = new JsonObject();
         reqBody.addProperty("session_id", sessionId);
 
-        CompletableFuture<Response<Void>> res = c.postPrivileged("/user/session/invalidate", reqBody, Void.class);
-        res.thenAccept(r -> {
-            if (r.success() && sessionId.equals(c.sessionID())) {
-                c.destroySession();
-            }
-        });
-
-        return res;
-    }
-
-    /**
-     * Invalidate this session and this client.
-     */
-    public CompletableFuture<Response<Void>> logout() {
-        return invalidateSession(c.sessionID());
+        return c.postPrivileged("/user/session/invalidate", reqBody, Void.class);
     }
 
     /**

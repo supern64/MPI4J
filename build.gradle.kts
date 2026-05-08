@@ -2,7 +2,7 @@ plugins {
     id("java-library")
 }
 
-group = "me.cirnoslab.mpi4j"
+group = "me.cirnoslab"
 version = "1.0-SNAPSHOT"
 
 repositories {

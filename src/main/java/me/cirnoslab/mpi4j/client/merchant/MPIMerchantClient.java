@@ -67,6 +67,15 @@ public class MPIMerchantClient {
         this.useStaging = useStaging;
     }
 
+    /**
+     * Create a merchant client.
+     *
+     * @param secretKey  The secret merchant key
+     */
+    public MPIMerchantClient(String secretKey) {
+        this(secretKey, false);
+    }
+
     public String baseURL() {
         return useStaging ? STAGING_URL : BASE_URL;
     }
